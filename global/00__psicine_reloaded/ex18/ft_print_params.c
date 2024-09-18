@@ -10,16 +10,15 @@ int	main(int argc, char **argv)
 	char	**args;
 	char	*arg;
 
+	(void)argc;
 	args = argv + 1;
 	while (*args)
 	{
 		arg = *args;
 		while (*arg)
 			ft_putchar(*arg++);
-		if (*(args + 1))
-			ft_putchar(' ');
+		ft_putchar('\n');
 		args++;
 	}
-	ft_putchar('\n');
 	return (0);
 }
