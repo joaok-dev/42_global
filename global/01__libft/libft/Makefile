@@ -1,10 +1,8 @@
 NAME = libft.a
-
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
-
 SRCS_DIR = srcs/
 OBJS_DIR = objs/
 INCLUDES = -I./includes
@@ -17,12 +15,20 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
        ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
        ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
+BONUS_SRCS = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
+             ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c \
+             ft_lstnew.c ft_lstsize.c
+
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
+BONUS_OBJS = $(BONUS_SRCS:%.c=$(OBJS_DIR)%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $@ $^
+
+bonus: $(OBJS) $(BONUS_OBJS)
+	$(AR) $(NAME) $^
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
@@ -36,4 +42,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
