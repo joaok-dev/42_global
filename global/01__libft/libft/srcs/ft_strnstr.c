@@ -1,17 +1,15 @@
 #include "../includes/libft.h"
 
 /**
-
-	* Locates the first occurrence of the null-terminated string little in the string big,
- * where not more than len characters are searched.
+ * Locates the first occurrence of the null-terminated string little
+ * in the string big, where not more than len characters are searched.
  *
  * @param big    The string to be searched
  * @param little The string to search for
  * @param len    The maximum number of characters to search
  *
-
-	* @return A pointer to the first character of the first occurrence of little in big,
- *         or NULL if little does not occur in big within len characters
+ * @return A pointer to the first character of the first occurrence of little
+ * in big, or NULL if little does not occur in big within len characters
  */
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)

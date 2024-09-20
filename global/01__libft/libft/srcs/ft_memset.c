@@ -1,8 +1,8 @@
 #include "../includes/libft.h"
 
 /**
-
-	* Fills the first len bytes of the memory area pointed to by b with the constant byte c.
+ * Fills the first len bytes of the memory area pointed to by b with the
+ * constant byte c.
  *
  * @param b   Pointer to the memory area to be filled
  * @param c   The byte to fill the memory with

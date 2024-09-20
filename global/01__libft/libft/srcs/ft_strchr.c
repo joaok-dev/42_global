@@ -1,8 +1,8 @@
 #include "../includes/libft.h"
 
 /**
-
-	* Locates the first occurrence of c (converted to a char) in the string pointed to by s.
+ * Locates the first occurrence of c (converted to a char) in the string
+ * pointed to by s.
  * The terminating null character is considered part of the string.
  *
  * @param s The string to search

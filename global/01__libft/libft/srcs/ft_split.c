@@ -83,27 +83,19 @@ static void	ft_free_result(char **result, size_t count)
 }
 
 /**
- * Splits a string into an array of substrings.
+ * Processes the input string and fills the result array.
  *
- * @param s	The string to Split
- * @param c	The delimiter character
+ * @param s			The input string
+ * @param c			The delimiter character
+ * @param result	The array to fill with substring
  *
- * @return Array of new strings resulting from the split, or NULL if the
- * allocation fails
+ * @return 1 if successful, 0 if allocation fails
  */
 
-char	**ft_split(char const *s, char c)
+static int	ft_fill_result(char const *s, char c, char **result)
 {
-	char	**result;
 	char	**ptr;
-	size_t	word_count;
 
-	if (!s)
-		return (NULL);
-	word_count = ft_count_words(s, c);
-	result = (char **)malloc((word_count + 1) * sizeof(char *));
-	if (!result)
-		return (NULL);
 	ptr = result;
 	while (*s)
 	{
@@ -113,13 +105,39 @@ char	**ft_split(char const *s, char c)
 		{
 			*ptr = ft_extract_word(&s, c);
 			if (!*ptr)
-			{
-				ft_free_result(result, ptr - result);
-				return (NULL);
-			}
+				return (0);
 			ptr++;
 		}
 	}
 	*ptr = NULL;
+	return (1);
+}
+
+/**
+ * Splits a string into an array of substring.
+ *
+ * @param s	The string to Split
+ * @param c	The delimiter character
+ *
+ * @return Array of new strings resulting from the split, or NULL if the
+ * allocation fails
+ */
+
+char	**ft_split(const char *s, char c)
+{
+	char	**result;
+	size_t	word_count;
+
+	if (!s)
+		return (NULL);
+	word_count = ft_count_words(s, c);
+	result = (char **)malloc((word_count + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	if (!ft_fill_result(s, c, result))
+	{
+		ft_free_result(result, word_count);
+		return (NULL);
+	}
 	return (result);
 }
